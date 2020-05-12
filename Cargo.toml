@@ -1,0 +1,33 @@
+[package]
+name = "net-army"
+version = "0.1.0"
+authors = ["Yun Liu <haha@live.cn>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+#[lib]
+#crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+#wee_alloc = "0.4"
+#yew = "0.14"
+#yew-router = "0.11"
+
+
+[dependencies.yew]
+version = "0.14"
+features = ["std_web"]
+
+[dependencies.yew-router]
+version = "0.11"
+features = ["std_web"]
+
+#[dependencies.web-sys]
+#version = "0.3"
+#features = [
+#    "Window", "Location", "console",
+#]
+#
+#[dependencies.wasm-bindgen]
+#version = "0.2"

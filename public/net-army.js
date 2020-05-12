@@ -1,1 +1,1 @@
-/home/sen/web/hanting/net-army/target/wasm32-unknown-unknown/debug/net-army.js
+/home/sen/web/army/backend/target/wasm32-unknown-unknown/debug/net-army.js

@@ -1,0 +1,7 @@
+html!{
+    <>
+    {   if self.logged_in { html!{<IndexLogin />} }
+        else { html!{<IndexMain />} }
+    }
+    </>
+}
