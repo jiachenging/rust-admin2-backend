@@ -9,18 +9,93 @@ html!{
             <li data-name="home" class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" lay-tips="主页" lay-direction="2">
                     <i class="layui-icon layui-icon-home"></i>
-                    <cite>{"主页"}</cite>
+                    <cite>{"网站管理"}</cite>
                 </a>
                 <dl class="layui-nav-child">
                     <dd data-name="console" class="layui-this">
-                        <a lay-href="home/console.html">{"控制台"}</a>
+                        <a href="javasript:;" onclick=self.link.callback(|_| RoutePages::IndexRight) lay-href="">{"后台首页"}</a>
                     </dd>
                     <dd data-name="console">
-                        <a lay-href="home/homepage1.html">{"主页一"}</a>
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::IndexConfig) lay-href="">{"网站配置"}</a>
+                    </dd>
+                </dl>
+            </li>
+            <li data-name="home" class="layui-nav-item">
+                <a href="javascript:;" lay-tips="主页" lay-direction="2">
+                    <i class="layui-icon layui-icon-home"></i>
+                    <cite>{"用户管理"}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd data-name="console" class="layui-this">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Users) lay-href="">{"用户列表"}</a>
                     </dd>
                     <dd data-name="console">
-                        <a lay-href="home/homepage2.html">{"主页二"}</a>
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::UserAccounts) lay-href="">{"用户账户"}</a>
                     </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::UserDetails) lay-href="">{"用户资料"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::UserCards) lay-href="">{"用户绑卡"}</a>
+                    </dd>
+                </dl>
+            </li>
+            <li data-name="home" class="layui-nav-item">
+                <a href="javascript:;" lay-tips="主页" lay-direction="2">
+                    <i class="layui-icon layui-icon-home"></i>
+                    <cite>{"财务管理"}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd data-name="console" class="layui-this">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Recharges) lay-href="">{"充值记录"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Withdraws) lay-href="">{"提现记录"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::AccountChanges) lay-href="">{"账变记录"}</a>
+                    </dd>
+                </dl>
+            </li>
+            <li data-name="home" class="layui-nav-item">
+                <a href="javascript:;" lay-tips="主页" lay-direction="2">
+                    <i class="layui-icon layui-icon-home"></i>
+                    <cite>{"后台管理"}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd data-name="console" class="layui-this">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Admins) lay-href="">{"后台用户"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::AdminRoles) lay-href="">{"角色管理"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::AdminMenus) lay-href="">{"菜单管理"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::AdminLogs) lay-href="">{"后台日志"}</a>
+                    </dd>
+                </dl>
+            </li>
+            <li data-name="home" class="layui-nav-item">
+                <a href="javascript:;" lay-tips="主页" lay-direction="2">
+                    <i class="layui-icon layui-icon-home"></i>
+                    <cite>{"系统设置"}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd data-name="console" class="layui-this">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Banks) lay-href="">{"银行列表"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Provinces) lay-href="">{"省份列表"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Cities) lay-href="">{"菜单管理"}</a>
+                    </dd>
+                    <dd data-name="console">
+                        <a href="javascript:;" onclick=self.link.callback(|_| RoutePages::Districts) lay-href="">{"县区列表"}</a>
+                    </dd>
+
                 </dl>
             </li>
         </ul>

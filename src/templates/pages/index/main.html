@@ -1,8 +1,8 @@
 html!{
 <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
-        <IndexHeader />
-        <IndexMenus />
+        { include!("_header.html") }
+        { include!("_menus.html") }
         <div class="layadmin-pagetabs" id="LAY_app_tabs">
             <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
             <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
@@ -27,7 +27,27 @@ html!{
 
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show" style="padding: 15px;">
-                <UsersIndex />
+{
+    match self.route_page { 
+    RoutePages::IndexRight      => html!{<Users />},
+    RoutePages::Users           => html!{<Users />},
+    RoutePages::UserAccounts    => html!{<UserAccounts />},
+    RoutePages::UserDetails     => html!{<UserDetails />},
+    RoutePages::UserCards       => html!{<UserCards />},
+    RoutePages::AdminMenus      => html!{<AdminMenus />},
+    RoutePages::AdminRoles      => html!{<AdminRoles />},
+    RoutePages::Admins          => html!{<Admins />},
+    RoutePages::Recharges       => html!{<Recharges />},
+    RoutePages::Withdraws       => html!{<Withdraws />},
+    RoutePages::Banks           => html!{<Banks />},
+    RoutePages::Provinces       => html!{<Provinces />},
+    RoutePages::Cities          => html!{<Cities />},
+    RoutePages::Districts       => html!{<Districts />},
+    RoutePages::AccountChanges  => html!{<AccountChanges />},
+    _                           => html!{<Users />},
+
+    }
+}
             </div>
         </div>
 
