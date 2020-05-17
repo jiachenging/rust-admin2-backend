@@ -1,33 +1,42 @@
 [package]
-name = "net-army"
+name = "backend-wasm"
 version = "0.1.0"
 authors = ["Yun Liu <haha@live.cn>"]
 edition = "2018"
+repository = "https://github.com/houhanting/army-backend.git"
+description = "后台管理系统"
+license = "GNU General Public License v2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-#[lib]
-#crate-type = ["cdylib", "rlib"]
+[lib]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 #wee_alloc = "0.4"
-#yew = "0.14"
-#yew-router = "0.11"
-
+serde_derive = "1.0"
+serde = "1.0"
+serde_json = "1.0"
+futures = "0.3"
+anyhow = "1.0"
+#log = "0.4"
+#web_logger = "0.2"
+#http = "0.2"
+#failure = "0.1"
+#rand = "0.7"
+#rust-crypto = "0.2"
+short-crypt = "1.0.15"
 
 [dependencies.yew]
-version = "0.14"
-features = ["std_web"]
+version = "0.16"
 
-[dependencies.yew-router]
-version = "0.11"
-features = ["std_web"]
+[dependencies.wasm-bindgen]
+version = "0.2"
 
-#[dependencies.web-sys]
-#version = "0.3"
-#features = [
-#    "Window", "Location", "console",
-#]
-#
-#[dependencies.wasm-bindgen]
-#version = "0.2"
+[dependencies.web-sys]
+version = "0.3"
+features = ["Request", "Response", "Window"]
+
+[dependencies.wasm-bindgen-futures]
+version = "0.4"
+
