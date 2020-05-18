@@ -1,12 +1,11 @@
 #![recursion_limit="2048"]
 
+#[macro_use] extern crate army_common;
 //#[global_allocator]
 //static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 use yew::prelude::*;
 
-#[macro_use]
-mod common;
 mod pages;
 mod layouts;
 //mod router;

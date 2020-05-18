@@ -1,5 +1,6 @@
 #![recursion_limit="2048"]
 #[macro_use] extern crate army_common;
+#[macro_use] extern crate serde_json;
 
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
