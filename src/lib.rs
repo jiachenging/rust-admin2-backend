@@ -4,12 +4,12 @@
 
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
+
 //#[global_allocator]
 //static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 pub mod pages;
 pub mod layouts;
-
 
 #[wasm_bindgen(start)]
 pub async fn run_app() {
