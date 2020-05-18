@@ -3,16 +3,9 @@ use yew::format::{Json}; //, Nothing};
 use yew::services::fetch::{FetchService, FetchTask};
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 use yew::services::ConsoleService;
-use crate::common::{FetchMsg, crypt};
+use army_common::{self, {web::{FetchMsg}, crypt, types::SwapData}};
 
 const REGISTER_URL: &'static str = "http://yobet.local/member/index/register";
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct DataFromFile {
-    errcode: u32,
-    message: String,
-    data: Option<String>,
-}
 
 /// 默认布局
 pub struct LayoutDefaults {
@@ -20,7 +13,7 @@ pub struct LayoutDefaults {
     fetch_service: FetchService,
     fetch_task: Option<FetchTask>,
     fetching: bool,
-    data: Option<DataFromFile>,
+    data: Option<SwapData>,
     console: ConsoleService,
 }
 
@@ -32,7 +25,7 @@ pub struct UserLogin {
 
 impl Component for LayoutDefaults {
 
-    type Message = FetchMsg<DataFromFile>;
+    type Message = FetchMsg<SwapData>;
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
@@ -75,7 +68,6 @@ impl Component for LayoutDefaults {
                 let json = if let Ok(v) = serde_json::to_string(&json_data) { v } else { self.console.log("=二"); return false; };
                 self.console.log("====三");
                 let request = yew::services::fetch::Request::post(REGISTER_URL).body(Json(&json)).unwrap();
-                //let request = fetch_post!(REGISTER_URL);
                 let task = self.fetch_service.fetch(request, callback).unwrap();
                 self.fetch_task = Some(task);
             }
