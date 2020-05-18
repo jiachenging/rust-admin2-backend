@@ -49,33 +49,12 @@ impl Component for LayoutDefaults {
                         return false;
                     }
                 };
-                let des_string = match crypt::decrypt_string(&json_data.data) {
-                    Ok(v) => { v },
-                    Err(err) => {
-                        self.console.log(err);
-                        return false;
-                    }
-                };
-                self.console.log(&format!("{:#?}", des_string));
-                let result = crypt::decrypt::<LoginInfo>(&des_string);
-                self.console.log(&format!("{:#?}", result));
-                let json = if let Ok(v) = serde_json::to_string(&json_data) { v } else { self.console.log("=二"); return false; };
-                let json_str = format!("json: {}", &json);
-                self.console.log(json_str.as_str());
-                //let ss: &[u8] = json.as_bytes();
-                let body_json = Json(&json);
-                let body_str = format!("body: {:?}", &body_json);
-                self.console.log(body_str.as_str());
-                let json_2 = json!({"data": json_data.data});
-                //let json_2 = serde_json::Value::String(json);
+                //let json_body = json_data.to_json();
+                let json_body = json!({"data": &json_data.data});
                 let request = yew::services::fetch::Request::post(REGISTER_URL)
                     .header("content-type", "application/json;charset=UTF-8")
-                    .body(Json(&json_2))
-                    //.body(&json)
+                    .body(Json(&json_body))
                     .unwrap();
-                //let (parts, body) = request.into_parts();
-                //let body = serde_json::to_vec(&body).unwrap();
-                //let request = yew::services::fetch::Request::from_parts(parts, body);
                 let task = self.fetch_service.fetch(request, callback).unwrap();
                 self.fetch_task = Some(task);
             }
