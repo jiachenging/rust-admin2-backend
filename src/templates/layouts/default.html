@@ -1,7 +1,11 @@
 html!{
     <>
-    {   
+    {
+        if !self.has_logged {
             include!("../pages/index/login.html")
+        } else {
+            html!{<IndexMain />}
+        }
     }
     </>
 }
