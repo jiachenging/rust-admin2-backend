@@ -25,20 +25,26 @@ impl Component for LayoutDefaults {
     type Message = FetchMsg<SwapData>;
     type Properties = ();
 
+    /// create
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let mut validator = Validation::new();
         validator.add("username", Rules::UserName, "必须输入用户名称")
             .add("password", Rules::Password, "必须输入用户密码");
+
+        let has_logged = if let Some(v) = LocalStorage::get::<LoginInfo>("login_info") {
+            v.username != ""
+        } else { false };
         Self {
             link,
             fetch_service: FetchService::new(),
             fetch_task: None,
             fetching: false,
             validator,
-            has_logged: false,
+            has_logged,
         }
     }
 
+    /// update
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             FetchMsg::FetchData => {
@@ -91,20 +97,14 @@ impl Component for LayoutDefaults {
         true
     }
 
+    /// change
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
         false
     }
 
+    /// view
     fn view(&self) -> Html {
-        let log = LoginInfo {
-            username: "user".to_owned(),
-            password: "pass".to_owned(),
-        };
-        LocalStorage::set("login_info", &log);
 
-        let info = LocalStorage::get::<LoginInfo>("login_info");
-        let message = format!("info: {:?}", info);
-        Console::log(&message);
 
         render_layout!("/default.html")
     }
