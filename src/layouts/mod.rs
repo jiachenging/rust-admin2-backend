@@ -1,13 +1,12 @@
-//use serde_derive::{Deserialize, Serialize};
 use yew::format::{Json}; //, Nothing};
 use yew::services::fetch::{FetchService, FetchTask};
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
-use yew::services::ConsoleService;
 use lucky::{
-    self,
-    {web::{FetchMsg, Dialog, Validation, validation::Rules}, types::SwapData},
+    self, crypt,
+    {web::{FetchMsg, Dialog, Validation, validation::Rules, Query, Console, LocalStorage}, types::SwapData},
     models::index::{LoginInfo, LoginResult}
 };
+use crate::pages::index::IndexMain;
 
 const REGISTER_URL: &'static str = "http://admin.army.rs/api/v1/login";
 
@@ -17,8 +16,8 @@ pub struct LayoutDefaults {
     fetch_service: FetchService,
     fetch_task: Option<FetchTask>,
     fetching: bool,
-    console: ConsoleService,
     validator: Validation,
+    has_logged: bool,
 }
 
 impl Component for LayoutDefaults {
@@ -35,9 +34,8 @@ impl Component for LayoutDefaults {
             fetch_service: FetchService::new(),
             fetch_task: None,
             fetching: false,
-            //data: None,
-            console: ConsoleService::new(),
             validator,
+            has_logged: false,
         }
     }
 
@@ -52,11 +50,9 @@ impl Component for LayoutDefaults {
                 match self.validator.validate() {
                     Ok(_) => {
                         let callback = self.link.callback(fetch_callback!());
-                        // 需要检测输入是否正确
-                        let login_info = LoginInfo {
-                            username: "temp_name".to_owned(),
-                            password: "qwe123".to_owned(),
-                        };
+                        let username = Query::value_by_id("username");
+                        let password = Query::value_by_id("password");
+                        let login_info = LoginInfo { username, password, };
                         let data = encrypt_struct!(LoginInfo :: &login_info);
                         let request = request_post!(REGISTER_URL, &data);
                         let task = self.fetch_service.fetch(request, callback).unwrap();
@@ -72,10 +68,19 @@ impl Component for LayoutDefaults {
             FetchMsg::FetchReady(response) => {
                 self.fetching = false; // 已经读取成功
                 if let Some(v) = response.ok() {
-                    let login_result = decrypt_struct!(v => LoginResult);
-                    let result_str = format!("result: {:?}", login_result);
-                    self.console.log(result_str.as_str());
-                    Dialog::alert(&login_result.message);
+                    let login_result = if let Ok(v) = crypt::decrypt::<LoginResult>(&v) { v } else {
+                        Console::log("解密下发的数据失败");
+                        return false;
+                    };
+                    let message = format!("login-result: {:?}", &login_result);
+                    Console::log(&message);
+                    Console::log_object(&login_result);
+                    if login_result.code != 0 {
+                        Dialog::alert(&login_result.message);
+                        return false;
+                    }
+                    self.has_logged = true;
+                    return true;
                 }
             }
             FetchMsg::FetchError => {
@@ -91,6 +96,16 @@ impl Component for LayoutDefaults {
     }
 
     fn view(&self) -> Html {
+        let log = LoginInfo {
+            username: "user".to_owned(),
+            password: "pass".to_owned(),
+        };
+        LocalStorage::set("login_info", &log);
+
+        let info = LocalStorage::get::<LoginInfo>("login_info");
+        let message = format!("info: {:?}", info);
+        Console::log(&message);
+
         render_layout!("/default.html")
     }
 }
