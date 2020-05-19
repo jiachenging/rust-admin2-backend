@@ -26,7 +26,7 @@ anyhow = "1.0"
 #rand = "0.7"
 #rust-crypto = "0.2"
 short-crypt = "1.0.15"
-army-common = { path = "../common" }
+lucky = { path = "../common" }
 
 [dependencies.yew]
 version = "0.16"
@@ -40,4 +40,7 @@ features = ["Request", "Response", "Window"]
 
 [dependencies.wasm-bindgen-futures]
 version = "0.4"
+
+[dependencies.js-sys]
+version = "0.3"
 

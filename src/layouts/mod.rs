@@ -3,7 +3,7 @@ use yew::format::{Json}; //, Nothing};
 use yew::services::fetch::{FetchService, FetchTask};
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 use yew::services::ConsoleService;
-use army_common::{self, {web::{FetchMsg}, crypt, types::SwapData}, models::index::{LoginInfo, LoginResult}};
+use lucky::{self, {web::{FetchMsg}, types::SwapData}, models::index::{LoginInfo, LoginResult}};
 
 const REGISTER_URL: &'static str = "http://admin.army.rs/api/v1/login";
 
@@ -13,7 +13,7 @@ pub struct LayoutDefaults {
     fetch_service: FetchService,
     fetch_task: Option<FetchTask>,
     fetching: bool,
-    data: Option<SwapData>,
+    //data: Option<SwapData>,
     console: ConsoleService,
 }
 
@@ -28,7 +28,7 @@ impl Component for LayoutDefaults {
             fetch_service: FetchService::new(),
             fetch_task: None,
             fetching: false,
-            data: None,
+            //data: None,
             console: ConsoleService::new(),
         }
     }
@@ -38,37 +38,32 @@ impl Component for LayoutDefaults {
             FetchMsg::FetchData => {
                 self.fetching = true; // 4.
                 let callback = self.link.callback(fetch_callback!());
+                // 需要检测输入是否正确
                 let login_info = LoginInfo {
                     username: "temp_name".to_owned(),
                     password: "qwe123".to_owned(),
                 };
-                let json_data = match crypt::encrypt(&login_info)  {
-                    Ok(v) => { v },
-                    Err(err) => {
-                        self.console.log(&format!("err: {}", err));
-                        return false;
-                    }
-                };
-                //let json_body = json_data.to_json();
-                let json_body = json!({"data": &json_data.data});
-                let request = yew::services::fetch::Request::post(REGISTER_URL)
-                    .header("content-type", "application/json;charset=UTF-8")
-                    .body(Json(&json_body))
-                    .unwrap();
+                let data = encrypt_struct!(LoginInfo :: &login_info);
+                let request = request_post!(REGISTER_URL, &data);
                 let task = self.fetch_service.fetch(request, callback).unwrap();
                 self.fetch_task = Some(task);
             }
             FetchMsg::FetchReady(response) => {
-                self.fetching = false; // 4.
-                self.data = response.ok(); // 6.
-                let result = format!("result: {:?}", &self.data);
-                self.console.log(result.as_str());
-                if let Some(v) = &self.data { 
-                    let data_str = &v.data;   
-                    let decrypt_str = crypt::decrypt_string(&data_str).unwrap();
-                    let login_result: LoginResult = crypt::decrypt(&decrypt_str).unwrap();
-                    let result_str = format!("login-result: {:?}", login_result);
+                self.fetching = false; // 已经读取成功
+                if let Some(v) = response.ok() {
+                    let login_result = decrypt_struct!(v => LoginResult);
+                    let result_str = format!("result: {:?}", login_result);
                     self.console.log(result_str.as_str());
+                    let message = format!(r#"
+                        layui.use(['layer'], function() {{
+                            let layer = layui.layer;
+                            layer.confirm('{}');
+                        }});
+                    "#, login_result.message);
+                    let result = js_sys::eval(&message);
+                    let msg = format!("result: {:?}", result);
+                    self.console.log(&msg);
+                    //js!(&message);
                 }
             }
             FetchMsg::FetchError => {
