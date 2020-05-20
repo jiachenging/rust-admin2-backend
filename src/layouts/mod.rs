@@ -1,8 +1,7 @@
-use yew::format::{Json}; //, Nothing};
 use yew::services::fetch::{FetchService, FetchTask};
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 use lucky::{
-    self, crypt,
+    crypt,
     {web::{FetchMsg, Dialog, Validation, validation::Rules, Query, Console, LocalStorage}, types::SwapData},
     models::index::{LoginInfo, LoginResult}
 };
@@ -59,8 +58,9 @@ impl Component for LayoutDefaults {
                         let username = Query::value_by_id("username");
                         let password = Query::value_by_id("password");
                         let login_info = LoginInfo { username, password, };
-                        let data = encrypt_struct!(LoginInfo :: &login_info);
-                        let request = request_post!(REGISTER_URL, &data);
+                        //let data = crypt::encrypt_to_value(&login_info);
+                        //let data = encrypt_struct!(LoginInfo :: &login_info);
+                        let request = request_post!(REGISTER_URL, &login_info);
                         let task = self.fetch_service.fetch(request, callback).unwrap();
                         self.fetch_task = Some(task);
                     },
