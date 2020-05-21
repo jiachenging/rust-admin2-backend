@@ -5,9 +5,12 @@ use lucky::{
     json::JsonPager,
     models::{UserRow},
     types::SwapData,
-    web::{FetchMsg, Console, Api},
+    web::{FetchMsg, Api},
     html::DataTable,
 };
+
+const API_LIST: &'static str = "/users";
+const API_CACHE_KEY: &'static str = "users";
 
 pub struct Users {
     fetching: bool,
@@ -26,9 +29,9 @@ impl Component for Users {
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let pager = Self::get_pager::<UserRow>("users");
+        let pager = Self::get_pager::<UserRow>(API_CACHE_KEY);
         Self {
-            task: if pager.is_none() { Some(Api::send("/users", &link)) } else { None },
+            task: if pager.is_none() { Some(Api::send(API_LIST, &link)) } else { None },
             fetching: pager.is_none(), //pager.is_none(), //true,
             link,
             pager,
@@ -43,7 +46,7 @@ impl Component for Users {
                 }
             },
             FetchMsg::FetchReady(response) => {
-                let pager = Self::fetch_pager::<UserRow>(response, "users");
+                let pager = Self::fetch_pager::<UserRow>(response, API_CACHE_KEY);
                 self.pager = pager;
                 self.fetching = false;
             },
