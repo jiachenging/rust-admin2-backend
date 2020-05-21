@@ -1,4 +1,4 @@
-#![recursion_limit="2048"]
+#![recursion_limit="4096"]
 
 #[macro_use] extern crate lucky;
 //#[macro_use] extern crate serde_json;
