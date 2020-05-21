@@ -29,36 +29,34 @@ html!{
             <div class="layadmin-tabsbody-item layui-show" style="padding: 15px;">
 {
     match self.route_page { 
-    RoutePages::IndexRight      => html!{<Users />},
-    RoutePages::Users           => html!{<Users />},
-    RoutePages::UserAccounts    => html!{<UserAccounts />},
-    RoutePages::UserDetails     => html!{<UserDetails />},
-    RoutePages::UserCards       => html!{<UserCards />},
-    RoutePages::AdminMenus      => html!{<AdminMenus />},
-    RoutePages::AdminRoles      => html!{<AdminRoles />},
-    RoutePages::Admins          => html!{<Admins />},
-    RoutePages::Recharges       => html!{<Recharges />},
-    RoutePages::Withdraws       => html!{<Withdraws />},
-    RoutePages::Banks           => html!{<Banks />},
-    RoutePages::Provinces       => html!{<Provinces />},
-    RoutePages::Cities          => html!{<Cities />},
-    RoutePages::Districts       => html!{<Districts />},
-    RoutePages::AccountChanges  => html!{<AccountChanges />},
-    _                           => html!{<Users />},
-
+        RoutePages::IndexRight      => html!{<IndexRight />},
+        RoutePages::Users           => html!{<Users />},
+        RoutePages::UserAccounts    => html!{<UserAccounts />},
+        RoutePages::UserDetails     => html!{<UserDetails />},
+        RoutePages::UserCards       => html!{<UserCards />},
+        RoutePages::AdminMenus      => html!{<AdminMenus />},
+        RoutePages::AdminRoles      => html!{<AdminRoles />},
+        RoutePages::Admins          => html!{<Admins />},
+        RoutePages::Recharges       => html!{<Recharges />},
+        RoutePages::Withdraws       => html!{<Withdraws />},
+        RoutePages::Banks           => html!{<Banks />},
+        RoutePages::Provinces       => html!{<Provinces />},
+        RoutePages::Cities          => html!{<Cities />},
+        RoutePages::Districts       => html!{<Districts />},
+        RoutePages::AccountChanges  => html!{<AccountChanges />},
+        _                           => html!{<Users />},
     }
 }
             </div>
         </div>
-
         <div class="layadmin-body-shade" layadmin-event="shade"></div>
     </div>
-    <script>{"
-        layui.config({
-            base: '/_static/layuiadmin/'
-        }).extend({
-            index: 'lib/index'
-        }).use('index');
-        "}</script>
+<script>{"
+    layui.config({
+        base: '/_static/layuiadmin/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'console']);
+"}</script>
 </div>
 }
