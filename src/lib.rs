@@ -1,4 +1,5 @@
 #![recursion_limit="2048"]
+
 #[macro_use] extern crate lucky;
 //#[macro_use] extern crate serde_json;
 
@@ -13,6 +14,6 @@ pub mod layouts;
 
 #[wasm_bindgen(start)]
 pub async fn run_app() {
-    // web_logger::init();
+    //web_logger::init();
     App::<layouts::LayoutDefaults>::new().mount_to_body();
 }
