@@ -19,14 +19,9 @@ serde = "1.0"
 serde_json = "1.0"
 futures = "0.3"
 anyhow = "1.0"
-#log = "0.4"
-#web_logger = "0.2"
-#http = "0.2"
-#failure = "0.1"
-#rand = "0.7"
-#rust-crypto = "0.2"
 short-crypt = "1.0.15"
 lucky = { path = "../common" }
+#chrono = "0.4"
 
 [dependencies.yew]
 version = "0.16"
