@@ -6,3 +6,6 @@
 
 pub mod index;
 pub use index::IndexMain;
+
+pub mod right;
+pub use right::IndexRight;
