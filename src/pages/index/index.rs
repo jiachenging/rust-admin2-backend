@@ -6,6 +6,7 @@ use crate::pages::{
     finances::{ Recharges, Withdraws, AccountChanges, },
     systems::{ Banks, Provinces, Cities, Districts, },
 };
+use super::IndexRight;
 
 
 /// 左侧路由菜单
