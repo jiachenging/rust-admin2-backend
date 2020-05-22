@@ -6,7 +6,7 @@ html!{
                 <table class="layui-table">
                     <colgroup>
                         <col width="60" />
-                        <col width="200" />
+                        <col width="100" />
                         <col width="200" />
                         <col width="200" />
                         <col width="200" />
@@ -16,25 +16,15 @@ html!{
                     <thead>
                     <tr>
                         <th>{"编号"}</th>
+                        <th>{"省份编号"}</th>
                         <th>{"省份编码"}</th>
-                        <th>{"省份名称"}</th>
                         <th>{"城市编码"}</th>
                         <th>{"城市名称"}</th>
                         <th>{"排序"}</th>
-                        <th>{"操作"}</th>
+                        <th>{"备注"}</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>{"1"}</td>
-                        <td>{"100891"}</td>
-                        <td>{"山东省"}</td>
-                        <td>{"1123123"}</td>
-                        <td>{"深圳市"}</td>
-                        <td>{"10"}</td>
-                        <td>{"-"}</td>
-                    </tr>
-                    </tbody>
+                    <tbody>{ rows }</tbody>
                 </table>
             </div>
         </div>
