@@ -71,7 +71,6 @@ impl Component for Banks {
                     <td>{&r.remark}</td>
                     <td>{&r.status}</td>
                     <td>{&r.sort}</td>
-                    <td>{""}</td>
                 </tr>
             };
         });
