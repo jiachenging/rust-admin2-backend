@@ -4,7 +4,7 @@ use crate::pages::{
     users::{ Users, UserAccounts, UserDetails, UserCards, },
     admins::{ AdminMenus, AdminRoles, Admins, },
     finances::{ Recharges, Withdraws, AccountChanges, },
-    systems::{ Banks, Provinces, Cities, Districts, },
+    systems::{ Banks, Provinces, Cities, },
 };
 use super::IndexRight;
 
@@ -27,7 +27,7 @@ pub enum RoutePages {
     Banks,          // 银行列表
     Provinces,      // 省份列表
     Cities,         // 城市列表
-    Districts,      // 县区列表
+    //Districts,      // 县区列表
 }
 
 pub struct IndexMain { 
