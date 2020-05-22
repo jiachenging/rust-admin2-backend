@@ -6,9 +6,10 @@ html!{
                 <table class="layui-table">
                     <colgroup>
                         <col width="60" />
-                        <col width="200" />
-                        <col width="80" />
+                        <col width="300" />
+                        <col width="150" />
                         <col />
+                        <col width="80" />
                         <col width="80" />
                         <col width="150" />
                     </colgroup>
@@ -16,22 +17,14 @@ html!{
                     <tr>
                         <th>{"编号"}</th>
                         <th>{"银行名称"}</th>
-                        <th>{"状态"}</th>
+                        <th>{"编码"}</th>
                         <th>{"备注"}</th>
+                        <th>{"状态"}</th>
                         <th>{"排序"}</th>
                         <th>{"操作"}</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>{"1"}</td>
-                        <td>{"中国银行"}</td>
-                        <td>{"正常"}</td>
-                        <td>{"在线网银支付准备率比较高"}</td>
-                        <td>{"98"}</td>
-                        <td>{"-"}</td>
-                    </tr>
-                    </tbody>
+                    <tbody> { rows } </tbody>
                 </table>
             </div>
         </div>
