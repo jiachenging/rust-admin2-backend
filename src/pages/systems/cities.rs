@@ -70,8 +70,8 @@ impl Component for Cities {
                     <td>{&r.province_code}</td>
                     <td>{&r.code}</td>
                     <td>{&r.name}</td>
-                    <td>{&r.sort}</td>
                     <td>{&r.remark}</td>
+                    <td>{&r.sort}</td>
                 </tr>
             };
         });
