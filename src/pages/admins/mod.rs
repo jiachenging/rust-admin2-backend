@@ -7,3 +7,5 @@ pub use admin_roles::AdminRoles;
 pub mod admins;
 pub use admins::Admins;
 
+pub mod admin_logs;
+pub use admin_logs::AdminLogs;
