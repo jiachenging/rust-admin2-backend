@@ -43,7 +43,8 @@ html!{
                         <col width="200" />
                         <col width="100" />
                         <col />
-                        <col width="200" />
+                        <col width="100" />
+                        <col width="150" />
                     </colgroup>
                     <thead>
                     <tr>
@@ -51,18 +52,11 @@ html!{
                         <th>{"色色名称"}</th>
                         <th>{"状态"}</th>
                         <th>{"备注"}</th>
+                        <th>{"排序"}</th>
                         <th>{"操作"}</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>{"1"}</td>
-                        <td>{"系统管理员"}</td>
-                        <td>{"正常"}</td>
-                        <td>{"最高级别系统管理员, 拥有所有权限"}</td>
-                        <td>{"-"}</td>
-                    </tr>
-                    </tbody>
+                    <tbody>{ rows }</tbody>
                 </table>
             </div>
         </div>
