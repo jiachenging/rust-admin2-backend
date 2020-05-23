@@ -2,7 +2,7 @@ use yew::prelude::*;
 //use super::{IndexHeader};
 use crate::pages::{
     users::{ Users, UserAccounts, UserDetails, UserCards, },
-    admins::{ AdminMenus, AdminRoles, Admins, },
+    admins::{ AdminMenus, AdminRoles, Admins, AdminLogs },
     finances::{ Recharges, Withdraws, AccountChanges, },
     systems::{ Banks, Provinces, Cities, },
 };
