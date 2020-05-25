@@ -70,7 +70,6 @@ impl Component for UserCards {
                     <td>{&r.user_name}</td>
                     <td>{&r.province_code}</td>
                     <td>{&r.city_code}</td>
-                    <td>{&r.district_code}</td>
                     <td>{&r.bank_id}</td>
                     <td>{&r.card_number}</td>
                     <td>{&r.real_name}</td>
