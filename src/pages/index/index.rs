@@ -8,7 +8,6 @@ use crate::pages::{
 };
 use super::IndexRight;
 
-
 /// 左侧路由菜单
 pub enum RoutePages {
     IndexRight,     // 后台首页
@@ -30,6 +29,7 @@ pub enum RoutePages {
     //Districts,      // 县区列表
 }
 
+/// 后台主要界面
 pub struct IndexMain { 
     route_page: RoutePages,     // 左侧菜单页面
     link: ComponentLink<Self>,  // link

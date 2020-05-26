@@ -104,8 +104,6 @@ impl Component for LayoutDefaults {
 
     /// view
     fn view(&self) -> Html {
-
-
         render_layout!("/default.html")
     }
 }

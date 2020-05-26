@@ -1,11 +1,7 @@
-//pub mod header;
-//pub use header::IndexHeader;
-
-//pub mod login;
-//pub use login::IndexLogin;
-
+/// 后台首页
 pub mod index;
 pub use index::IndexMain;
 
+/// 后台主界面
 pub mod right;
 pub use right::IndexRight;
