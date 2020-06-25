@@ -7,7 +7,7 @@ use lucky::{
 };
 use crate::pages::index::IndexMain;
 
-const REGISTER_URL: &'static str = "http://admin.army.rs/api/v1/login";
+const REGISTER_URL: &'static str = "/login";
 
 /// 默认布局
 pub struct LayoutDefaults {
@@ -58,9 +58,9 @@ impl Component for LayoutDefaults {
                         let username = Query::value_by_id("username");
                         let password = Query::value_by_id("password");
                         let login_info = LoginInfo { username, password, };
-                        //let data = crypt::encrypt_to_value(&login_info);
+                        let data = crypt::encrypt_to_value(&login_info);
                         //let data = encrypt_struct!(LoginInfo :: &login_info);
-                        let request = request_post!(REGISTER_URL, &login_info);
+                        let request = request_post!(REGISTER_URL, &data);
                         let task = self.fetch_service.fetch(request, callback).unwrap();
                         self.fetch_task = Some(task);
                     },
